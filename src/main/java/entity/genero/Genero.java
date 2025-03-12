@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "GENERO")
@@ -31,11 +32,11 @@ public class Genero {
         this.id = id;
     }
 
-    public @NotNull TipoGenero getTipoGenero() {
+    public TipoGenero getTipoGenero() {
         return tipoGenero;
     }
 
-    public void setTipoGenero(@NotNull TipoGenero tipoGenero) {
+    public void setTipoGenero(TipoGenero tipoGenero) {
         this.tipoGenero = tipoGenero;
     }
 
@@ -45,5 +46,25 @@ public class Genero {
 
     public void setFilmes(Collection<Filme> filmes) {
         this.filmes = filmes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Genero genero = (Genero) o;
+        return Objects.equals(id, genero.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Genero{" +
+                "id=" + id +
+                '}';
     }
 }
