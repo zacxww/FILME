@@ -3,10 +3,10 @@ package util;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
-import javax.annotation.Priority;
+import jakarta.annotation.Priority;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
-import javax.interceptor.Interceptor;
+import jakarta.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 import java.io.Serializable;
 

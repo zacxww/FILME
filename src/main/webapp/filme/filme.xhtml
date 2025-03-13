@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+
+    <meta charset="UTF-8"/>
+    <title>FILME</title>
+
+    <h:outputStyleSheet library="FILME" name="style.css"/>
+
+</h:head>
+
+<h:body>
+
+<header>
+    <h:graphicImage library="FILME" name="logo.png"/>
+</header>
+
+<div id="conteudo">
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Filmes: " for="filme"/>
+            <h:inputText id="filme" />
+
+            <h:outputLabel value="Gêneros: " for="genero"/>
+            <h:inputText id="genero" />
+
+            <h:outputLabel value="Gênero: " for="tipo"/>
+            <h:selectOneMenu id="tipo">
+                <f:selectItem itemLabel="Selecione..." />
+                <f:selectItem itemLabel="Ação" itemValue="ACAO" />
+                <f:selectItem itemLabel="Comédia" itemValue="COMEDIA" />
+                <f:selectItem itemLabel="Drama" itemValue="DRAMA" />
+                <f:selectItem itemLabel="Fantasia" itemValue="FANTASIA" />
+                <f:selectItem itemLabel="Romance" itemValue="ROMANCE" />
+                <f:selectItem itemLabel="Terror" itemValue="TERROR" />
+            </h:selectOneMenu>
+
+            <h:outputLabel />
+            <h:commandButton value="Salvar" />
+        </h:panelGrid>
+
+        <h:dataTable>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Filme"/>
+                </f:facet>
+                <h:outputText value=""/>
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Gênero"/>
+                </f:facet>
+                <h:outputText value=""/>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</div>
+
+<footer>
+    Footer
+</footer>
+
+</h:body>
+
+</html>
