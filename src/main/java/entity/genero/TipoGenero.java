@@ -8,17 +8,17 @@ public enum TipoGenero {
     ROMANCE("Romance"),
     TERROR("Terror");
 
-    private String nomeGenero;
+    private String label;
 
-    TipoGenero(String nomeGenero){
-        this.nomeGenero = nomeGenero;
+    TipoGenero(String label){
+        this.label = label;
     }
 
-    public String getNomeGenero() {
-        return nomeGenero;
+    public String getLabel() {
+        return label;
     }
 
-    public void setNomeGenero(String nomeGenero) {
-        this.nomeGenero = nomeGenero;
+    public void setLabel(String label) {
+        this.label = label;
     }
 }

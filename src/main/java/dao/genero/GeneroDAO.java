@@ -3,6 +3,7 @@ package dao.genero;
 import entity.filme.Filme;
 import entity.genero.Genero;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.swing.text.html.parser.Entity;
@@ -13,6 +14,7 @@ public class GeneroDAO implements Serializable {
 
     private static final long serialVersionUID = 3573251214183465317L;
 
+    @Inject
     private EntityManager manager;
 
     public GeneroDAO(){}

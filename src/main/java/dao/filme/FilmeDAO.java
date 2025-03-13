@@ -2,6 +2,7 @@ package dao.filme;
 
 import entity.filme.Filme;
 
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.io.Serializable;
@@ -11,6 +12,7 @@ public class FilmeDAO implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
+  @Inject
   private EntityManager manager;
 
   public FilmeDAO() {}
