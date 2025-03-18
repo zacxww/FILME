@@ -1,4 +1,4 @@
-package facade;
+package facade.filme;
 
 import dao.filme.FilmeDAO;
 import entity.filme.Filme;

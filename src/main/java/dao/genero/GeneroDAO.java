@@ -6,7 +6,6 @@ import entity.genero.Genero;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import javax.swing.text.html.parser.Entity;
 import java.io.Serializable;
 import java.util.List;
 

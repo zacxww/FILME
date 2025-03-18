@@ -1,7 +1,8 @@
 package entity.genero;
 
+import entity.genero.TipoGenero;
 import entity.filme.Filme;
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
 import java.util.Collection;
