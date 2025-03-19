@@ -1,67 +1,73 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 
-    <meta charset="UTF-8"/>
-    <title>FILME</title>
+	<meta charset="UTF-8" />
+	<title>FILME</title>
 
-    <h:outputStyleSheet library="FILME" name="style.css"/>
+	<h:outputStylesheet library="FILME" name="style.css" />
 
 </h:head>
 
 <h:body>
 
-<header>
-    <h:graphicImage library="FILME" name="logo.png"/>
-</header>
+	<header>
+		<h:graphicImage id="logo" library="FILME" name="232061.png" />
+	</header>
 
-<div id="conteudo">
-    <h:form>
-        <h:panelGrid columns="2">
-            <h:outputLabel value="Filmes: " for="filme"/>
-            <h:inputText id="filme" />
+	<div id="conteudo">
+		<f:view>
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Filme: " for="filme" />
+					<h:inputText id="filme" value="#{mBeanListarFilmes.filme.nome}" />
 
-            <h:outputLabel value="Gêneros: " for="genero"/>
-            <h:inputText id="genero" />
+					<h:outputLabel value="Gênero: " for="tipo" />
+					<p:selectCheckboxMenu id="tipo" multiple="true"
+						emptyLabel="Selecione..." updateLabel="true"
+						value="#{mBeanListarFilmes.filme.generos}">
 
-            <h:outputLabel value="Gênero: " for="tipo"/>
-            <h:selectOneMenu id="tipo">
-                <f:selectItem itemLabel="Selecione..." />
-                <f:selectItem itemLabel="Ação" itemValue="ACAO" />
-                <f:selectItem itemLabel="Comédia" itemValue="COMEDIA" />
-                <f:selectItem itemLabel="Drama" itemValue="DRAMA" />
-                <f:selectItem itemLabel="Fantasia" itemValue="FANTASIA" />
-                <f:selectItem itemLabel="Romance" itemValue="ROMANCE" />
-                <f:selectItem itemLabel="Terror" itemValue="TERROR" />
-            </h:selectOneMenu>
+						<p:ajax event="toggleSelect" listener="#{mBeanListarFilmes.onToggleSelect}" />
+						<p:ajax event="toggleSelect" listener="#{mBeanListarFilmes.onItemSelect}" />
+						<p:ajax event="toggleSelect" listener="#{mBeanListarFilmes.onItemUnselect}" />
+						
+						<f:selectItems value="#{mBeanListarFilmes.tiposGenero}"
+							var="tipoGenero" itemLabel="#{tipoGenero.label}"
+							itemValue="#{tipoGenero}" />
+					</p:selectCheckboxMenu>
 
-            <h:outputLabel />
-            <h:commandButton value="Salvar" />
-        </h:panelGrid>
+					<h:outputLabel />
+					<h:commandButton value="Salvar"
+						actionListener="#{mBeanListarFilmes.salvar}" />
+						
+					<h:outputLabel />
+					<h:commandLink value="Ajuda"
+						action="ajuda?faces-redirect=false" />
+				</h:panelGrid>
 
-        <h:dataTable value="#{[0,0]}">
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Filme"/>
-                </f:facet>
-                <h:outputText value=""/>
-            </h:column>
+				<h:dataTable value="#{[0, 0]}">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Filme" />
+						</f:facet>
+						<h:outputText value="#{mBeanListarFilmes.filme.nome eq null ? '' : mBeanListarFilmes.filme.nome}" />
+					</h:column>
 
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText value="Gênero"/>
-                </f:facet>
-                <h:outputText value=""/>
-            </h:column>
-        </h:dataTable>
-    </h:form>
-</div>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Gênero" />
+						</f:facet>
+						<h:outputText value="#{mBeanListarFilmes.filme.generos eq null ? '' : mBeanListarFilmes.filme.generos}" />
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</f:view>
+	</div>
 
-<footer>
-    Footer
-</footer>
+	<footer> TESTE DE ANOTAÇÕES JSF + PRIMEFACES </footer>
 
 </h:body>
 

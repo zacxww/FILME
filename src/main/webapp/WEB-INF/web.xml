@@ -10,6 +10,15 @@
 		<welcome-file>filme.xhtml</welcome-file>
 	</welcome-file-list>
 
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+
+	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>server</param-value>
+	</context-param>
+
 	<context-param>
 		<param-name>org.jboss.weld.executor.threadPoolSize</param-name>
 		<param-value>0</param-value>

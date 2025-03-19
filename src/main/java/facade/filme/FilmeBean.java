@@ -7,7 +7,7 @@ import util.Transacional;
 import javax.inject.Inject;
 import java.io.Serializable;
 
-public class CadastroFilmeServiceBean implements Serializable {
+public class FilmeBean implements Serializable {
 
   private static final long serialVersionUID = -905670798272933719L;
 

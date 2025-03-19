@@ -1,12 +1,14 @@
 package entity.filme;
 
-import entity.genero.Genero;
+import entity.genero.TipoGenero;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -29,10 +31,15 @@ public class Filme implements Serializable {
     @Size(max = 255)
     @Column(name = "DESCRICAO")
     private String descricao;
+    
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    @Column(name = "data_lancamento")
+    private Date dataLancamento;
 
     @NotNull
-    @ManyToMany
-    private Collection<Genero> generos;
+    @Enumerated(EnumType.STRING)
+    private Collection<TipoGenero> generos;
 
 
     public Long getId() {
@@ -59,11 +66,11 @@ public class Filme implements Serializable {
         this.descricao = descricao;
     }
 
-    public Collection<Genero> getGeneros() {
+    public Collection<TipoGenero> getGeneros() {
         return generos;
     }
 
-    public void setGeneros(Collection<Genero> generos) {
+    public void setGeneros(Collection<TipoGenero> generos) {
         this.generos = generos;
     }
 
