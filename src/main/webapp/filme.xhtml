@@ -1,74 +1,144 @@
-<!DOCTYPE html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
 <h:head>
-
-	<meta charset="UTF-8" />
-	<title>FILME</title>
-
-	<h:outputStylesheet library="FILME" name="style.css" />
-
+    <title>Letterboxd Filmes</title>
+    <h:outputStylesheet library="FILME" name="style.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
 </h:head>
 
 <h:body>
+    <div class="ui-container">
+        <div class="ui-panel">
+            <h1 class="ui-panel-title">Sistema de Gerenciamento de Filmes</h1>
+        </div>
 
-	<header>
-		<h:graphicImage id="logo" library="FILME" name="232061.png" />
-	</header>
+        <div class="ui-card">
+            <h:form id="filmeForm">
+                <p:messages id="messages" showDetail="true" closable="true" styleClass="form-message">
+                    <p:autoUpdate/>
+                </p:messages>
 
-	<div id="conteudo">
-		<f:view>
-			<h:form>
-				<h:panelGrid columns="2">
-					<h:outputLabel value="Filme: " for="filme" />
-					<h:inputText id="filme" value="#{mBeanListarFilmes.filme.nome}" />
+                <div class="form-container">
+                    <div class="form-group">
+                        <p:inputText id="filme" value="#{mBeanListarFilmes.filme.nome}" 
+                                   styleClass="form-input" required="true"/>
+                        <p:outputLabel for="filme" value="Título" styleClass="form-label"/>
+                    </div>
 
-					<h:outputLabel value="Gênero: " for="tipo" />
-					<p:selectCheckboxMenu id="tipo" multiple="true"
-						emptyLabel="Selecione..." updateLabel="true"
-						value="#{mBeanListarFilmes.filme.generos}">
+                    <div class="form-group form-checkbox-menu">
+                        <p:selectCheckboxMenu id="tipo" multiple="true"
+                                           value="#{mBeanListarFilmes.filme.generos}"
+                                           styleClass="form-input"
+                                           emptyLabel="Selecione...">
+                            <f:selectItems value="#{mBeanListarFilmes.tiposGenero}"
+                                        var="tipoGenero" itemLabel="#{tipoGenero.label}"
+                                        itemValue="#{tipoGenero}"/>
+                        </p:selectCheckboxMenu>
+                        <p:outputLabel for="tipo" value="Gêneros" styleClass="form-label"/>
+                    </div>
 
-						<p:ajax event="toggleSelect" listener="#{mBeanListarFilmes.onToggleSelect}" />
-						<p:ajax event="toggleSelect" listener="#{mBeanListarFilmes.onItemSelect}" />
-						<p:ajax event="toggleSelect" listener="#{mBeanListarFilmes.onItemUnselect}" />
-						
-						<f:selectItems value="#{mBeanListarFilmes.tiposGenero}"
-							var="tipoGenero" itemLabel="#{tipoGenero.label}"
-							itemValue="#{tipoGenero}" />
-					</p:selectCheckboxMenu>
+                    <div class="form-group">
+                        <p:inputText id="diretor" value="#{mBeanListarFilmes.filme.diretor}" 
+                                   styleClass="form-input"/>
+                        <p:outputLabel for="diretor" value="Diretor" styleClass="form-label"/>
+                    </div>
 
-					<h:outputLabel />
-					<h:commandButton value="Salvar"
-						actionListener="#{mBeanListarFilmes.salvar}" />
-						
-					<h:outputLabel />
-					<h:commandLink value="Ajuda"
-						action="ajuda?faces-redirect=false" />
-				</h:panelGrid>
+                    <div class="form-group">
+                        <p:inputNumber id="ano" value="#{mBeanListarFilmes.filme.ano}" 
+                                     styleClass="form-input"
+                                     decimalPlaces="0"
+                                     thousandSeparator="."
+                                     decimalSeparator=","
+                                     minValue="1900"
+                                     maxValue="2100">
+                            <f:validateLongRange minimum="1900" maximum="2100" />
+                        </p:inputNumber>
+                        <p:outputLabel for="ano" value="Ano" styleClass="form-label"/>
+                        <p:message for="ano" styleClass="form-message form-message-error"/>
+                    </div>
 
-				<h:dataTable value="#{[0, 0]}">
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Filme" />
-						</f:facet>
-						<h:outputText value="#{mBeanListarFilmes.filme.nome eq null ? '' : mBeanListarFilmes.filme.nome}" />
-					</h:column>
+                    <div class="form-group">
+                        <p:inputTextarea id="sinopse" value="#{mBeanListarFilmes.filme.sinopse}" 
+                                       styleClass="form-input form-textarea"/>
+                        <p:outputLabel for="sinopse" value="Sinopse" styleClass="form-label"/>
+                    </div>
 
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Gênero" />
-						</f:facet>
-						<h:outputText value="#{mBeanListarFilmes.filme.generos eq null ? '' : mBeanListarFilmes.filme.generos}" />
-					</h:column>
-				</h:dataTable>
-			</h:form>
-		</f:view>
-	</div>
+                    <div class="form-group">
+                        <p:inputText id="poster" value="#{mBeanListarFilmes.filme.posterUrl}" 
+                                   styleClass="form-input"/>
+                        <p:outputLabel for="poster" value="URL do Poster" styleClass="form-label"/>
+                    </div>
+                </div>
 
-	<footer> TESTE DE ANOTAÇÕES JSF + PRIMEFACES </footer>
+                <div class="form-actions">
+                    <p:commandButton value="Limpar" 
+                                   styleClass="form-button form-button-secondary"
+                                   process="@this" update="@form">
+                        <p:resetInput target="@form" />
+                    </p:commandButton>
+                    <p:commandButton value="Salvar"
+                                   actionListener="#{mBeanListarFilmes.salvar}"
+                                   styleClass="form-button form-button-primary" 
+                                   update="@form :listaForm"/>
+                    <p:commandLink value="Ajuda"
+                                styleClass="form-help"
+                                action="ajuda?faces-redirect=false"/>
+                </div>
+            </h:form>
+        </div>
 
+        <div class="ui-card">
+            <h:form id="listaForm">
+                <div class="movie-grid">
+                    <ui:repeat value="#{mBeanListarFilmes.filmes}" var="filme">
+                        <div class="movie-card">
+                            <h:graphicImage value="#{filme.posterUrl}" styleClass="movie-poster"
+                                          rendered="#{not empty filme.posterUrl}"/>
+                            <h:graphicImage value="https://via.placeholder.com/300x450?text=Sem+Poster" 
+                                          styleClass="movie-poster"
+                                          rendered="#{empty filme.posterUrl}"/>
+                            <div class="movie-info">
+                                <h3 class="movie-title">#{filme.nome}</h3>
+                                <div class="movie-genres">
+                                    <ui:repeat value="#{filme.generos}" var="genero">
+                                        <span class="movie-genre">#{genero.label}</span>
+                                    </ui:repeat>
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <p:commandButton icon="pi pi-pencil" title="Editar"
+                                                   action="#{mBeanListarFilmes.editar(filme)}"
+                                                   styleClass="form-button form-button-secondary" 
+                                                   style="margin-right: 5px;"
+                                                   update=":filmeForm"/>
+                                    <p:commandButton icon="pi pi-trash" title="Excluir"
+                                                   action="#{mBeanListarFilmes.excluir(filme)}"
+                                                   styleClass="form-button form-button-danger"
+                                                   update=":listaForm">
+                                        <p:confirm header="Confirmação" 
+                                                 message="Tem certeza que deseja excluir este filme?" 
+                                                 icon="pi pi-exclamation-triangle"/>
+                                    </p:commandButton>
+                                </div>
+                            </div>
+                        </div>
+                    </ui:repeat>
+                </div>
+                
+                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350"
+                               styleClass="form-dialog">
+                    <p:commandButton value="Não" type="button" 
+                                   styleClass="form-button form-button-secondary"/>
+                    <p:commandButton value="Sim" type="button" 
+                                   styleClass="form-button form-button-danger"/>
+                </p:confirmDialog>
+            </h:form>
+        </div>
+    </div>
 </h:body>
-
 </html>

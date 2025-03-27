@@ -37,6 +37,21 @@ public class Filme implements Serializable {
     @Column(name = "data_lancamento")
     private Date dataLancamento;
 
+    @Size(max = 255)
+    @Column(name = "DIRETOR")
+    private String diretor;
+
+    @Column(name = "ANO")
+    private Integer ano;
+
+    @Size(max = 2000)
+    @Column(name = "SINOPSE")
+    private String sinopse;
+
+    @Size(max = 500)
+    @Column(name = "POSTER_URL")
+    private String posterUrl;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private Collection<TipoGenero> generos;
@@ -66,6 +81,46 @@ public class Filme implements Serializable {
         this.descricao = descricao;
     }
 
+    public Date getDataLancamento() {
+        return dataLancamento;
+    }
+
+    public void setDataLancamento(Date dataLancamento) {
+        this.dataLancamento = dataLancamento;
+    }
+
+    public String getDiretor() {
+        return diretor;
+    }
+
+    public void setDiretor(String diretor) {
+        this.diretor = diretor;
+    }
+
+    public Integer getAno() {
+        return ano;
+    }
+
+    public void setAno(Integer ano) {
+        this.ano = ano;
+    }
+
+    public String getSinopse() {
+        return sinopse;
+    }
+
+    public void setSinopse(String sinopse) {
+        this.sinopse = sinopse;
+    }
+
+    public String getPosterUrl() {
+        return posterUrl;
+    }
+
+    public void setPosterUrl(String posterUrl) {
+        this.posterUrl = posterUrl;
+    }
+
     public Collection<TipoGenero> getGeneros() {
         return generos;
     }
@@ -91,6 +146,9 @@ public class Filme implements Serializable {
     public String toString() {
         return "Filme{" +
                 "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", diretor='" + diretor + '\'' +
+                ", ano=" + ano +
                 '}';
     }
 }

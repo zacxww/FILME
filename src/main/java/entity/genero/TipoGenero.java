@@ -2,10 +2,16 @@ package entity.genero;
 
 public enum TipoGenero {
     ACAO("Ação"),
+    AVENTURA("Aventura"),
     COMEDIA("Comédia"),
+    CRIME("Crime"),
+    DOCUMENTARIO("Documentário"),
     DRAMA("Drama"),
     FANTASIA("Fantasia"),
+    FICCAO_CIENTIFICA("Ficção Científica"),
+    MUSICAL("Musical"),
     ROMANCE("Romance"),
+    SUSPENSE("Suspense"),
     TERROR("Terror");
 
     private String label;
