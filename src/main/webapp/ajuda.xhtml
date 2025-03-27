@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<meta charset="UTF-8" />
+	<title>Ajuda</title>
+
+	<h:outputStylesheet library="FILME" name="style.css" />
+
+</h:head>
+
+<h:body>
+
+	<header>
+		<h:graphicImage id="logo" library="FILME" name="232061.png" />
+	</header>
+	
+	<h2>Ajuda</h2>
+
+	<div id="conteudo">
+		<f:view>
+			<h:form>
+				<p>Esta é a ajuda da página de cadastro de filmes</p>
+				<p>
+					<h:commandLink value="Voltar" action="filme?faces-redirect=true" />
+				</p>
+			</h:form>
+		</f:view>
+	</div>
+
+	<footer> TESTE DE ANOTAÇÕES JSF + PRIMEFACES </footer>
+
+</h:body>
+
+</html>
